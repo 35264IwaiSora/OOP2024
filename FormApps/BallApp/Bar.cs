@@ -17,9 +17,14 @@ namespace BallApp {
 
         public override bool Move(Keys direction) {
             if(direction == Keys.Right) {
-                PosX += MoveX;
+                if (PosX < 640) {
+                    PosX += MoveX;
+                }
+                
             }else if(direction == Keys.Left) {
-                PosX -= MoveX;
+                if(PosX > 0) {
+                    PosX -= MoveX;
+                }
             }
             return true;
         }
