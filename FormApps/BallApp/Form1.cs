@@ -5,6 +5,7 @@ namespace BallApp {
         //listコレクション
         private List<Obj> balls = new List<Obj>();
         private List<PictureBox> pbs = new List<PictureBox>();
+        
         //コンストラクタ
         public Form1() {
             InitializeComponent();
@@ -13,7 +14,7 @@ namespace BallApp {
 
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
-            //this.BackColor = Color.Green;
+            
 
         }
 
@@ -33,7 +34,6 @@ namespace BallApp {
             if (e.Button == MouseButtons.Left) {
                 pb.Size = new Size(50, 50);
                 ball = new SoccerBall(e.X - 25, e.Y - 25);
-
             } else if (e.Button == MouseButtons.Right) {
                 pb.Size = new Size(25, 25);
                 ball = new TennisBall(e.X - 12, e.Y - 12);
@@ -47,6 +47,7 @@ namespace BallApp {
 
             balls.Add(ball);
             pbs.Add(pb);
+            this.Text = "BallApp SoccerBall:" + SoccerBall.Count + "TennisBall:" + TennisBall.Count;
         }
     }
 }

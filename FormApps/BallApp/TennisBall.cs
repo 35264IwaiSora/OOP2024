@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace BallApp {
     internal class TennisBall : Obj {
+        public static int Count { get; set; }
+
+        Random random = new Random(); //乱数インスタンス
+
         public TennisBall(double xp, double yp)
             : base(xp,yp,@"Pictuer\tennis_ball.png"){
-            MoveX = 10; //移動量設定
-            MoveY = 10;
+            MoveX = random.Next(-25, 25); //移動量設定
+            MoveY = random.Next(-25, 25);
+            Count++;
         }
 
         public override bool Move() {
