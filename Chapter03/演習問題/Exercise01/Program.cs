@@ -35,14 +35,17 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            IEnumerable<int> number = numbers.Where(n => 50 < n);
+            IEnumerable<int> number = numbers.Where(n => 50 <= n);
             foreach (int n in number) {
                 Console.WriteLine(n);
             }
         }
 
         private static void Exercise1_4(List<int> numbers) {
-
+            IEnumerable<int> number = numbers.Select(n => n * 2);
+            foreach (int n in number) {
+                Console.WriteLine(n);
+            }
         }
     }
 }
