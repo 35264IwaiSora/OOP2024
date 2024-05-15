@@ -26,8 +26,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(List<int> numbers) {
-            var num = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
-            Console.WriteLine(num);
+            var exists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
+            Console.WriteLine(exists);
         }
 
         private static void Exercise1_2(List<int> numbers) {
