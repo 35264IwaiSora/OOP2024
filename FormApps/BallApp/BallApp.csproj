@@ -24,13 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Pictuer\bar.png">
+    <None Update="Picture\bar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Pictuer\soccer_ball.png">
+    <None Update="Picture\soccer_ball.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Pictuer\tennis_ball.png">
+    <None Update="Picture\tennis_ball.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
