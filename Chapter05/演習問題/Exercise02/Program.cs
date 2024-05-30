@@ -11,10 +11,10 @@ namespace Exercise02 {
             var line = Console.ReadLine();
             int num;
             if (int.TryParse(line, out num)) {
-                string formattedNumber = num.ToString("N0");
-                Console.WriteLine(formattedNumber);
+                Console.WriteLine($"{num:#,#}");
+                //Console.WriteLine("{0:#,#}", num);
             } else {
-                Console.WriteLine("変換に失敗しました");
+                Console.WriteLine("数字文字列ではありません");
             }
         }
     }
