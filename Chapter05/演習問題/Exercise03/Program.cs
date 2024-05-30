@@ -8,6 +8,7 @@ namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
             var text = "Jackdaws love my big sphinx of quartz";
+            var text2 = "Jackdaws.love my,big sphinx-of_quartz";
 
             Exercise3_1(text);
             Console.WriteLine("-----");
@@ -22,11 +23,14 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
+            Console.WriteLine("-----");
+
+            Exercise3_6(text2);
         }
 
         private static void Exercise3_1(string text) {
             var spaces = text.Count(c => c == ' ');
-           Console.WriteLine("空白数：[0]",spaces);
+           Console.WriteLine("空白数："+spaces);
         }
 
         private static void Exercise3_2(string text) {
@@ -48,14 +52,20 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_5(string text) {
-            var words = text.Split(' ');
+            var arry = text.Split(' ').ToArray();
             var sb = new StringBuilder();
-            foreach (var item in words) {
+            foreach (var item in arry) {
                 sb.Append(item);
                 sb.Append(" ");
             }
-            var text2 = sb.ToString();
-            Console.WriteLine(text2);
+            Console.WriteLine(sb);
+        }
+        private static void Exercise3_6(string text) {
+            var words = text.Split(new[] { ' ',',','.','-','_'}).ToArray();
+            foreach (var item in words)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
