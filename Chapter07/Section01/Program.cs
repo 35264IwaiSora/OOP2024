@@ -34,11 +34,29 @@ namespace Section01 {
                 prefectural_office = Console.ReadLine();
                 
                 prefectureOfficeDict.Add(prefecture,prefectural_office);
-
             }
-
-            foreach (var item in prefectureOfficeDict) {
-                    Console.WriteLine("{0}の県庁所在地は{1}です。",item.Key,item.Value);
+            while (true) {
+                Console.WriteLine("*メニュー*");
+                Console.WriteLine("1:一覧表示");
+                Console.WriteLine("2:検索");
+                Console.WriteLine("9:終了");
+                int num = int.Parse(Console.ReadLine());
+                if (num == 1) {
+                    foreach (var item in prefectureOfficeDict) {
+                        Console.WriteLine("{0}の県庁所在地は{1}です。", item.Key, item.Value);
+                    }
+                } else if (num == 2) {
+                    Console.Write("都道府県：");
+                    prefecture = Console.ReadLine();
+                    foreach (var item in prefectureOfficeDict) {
+                        if (item.Key == prefecture) {
+                            Console.Write("県庁所在地：");
+                            Console.WriteLine(item.Value);
+                        }
+                    }
+                } else if (num == 9) {
+                    break;
+                }
             }
 
 
