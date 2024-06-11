@@ -8,17 +8,7 @@ using System.Xml.Linq;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            //var employeeDict = new Dictionary<int, Employee> {
-            //    { 100, new Employee(100, "清水遼久") },
-            //    { 112, new Employee(112, "芹沢洋和") },
-            //    { 125, new Employee(125, "岩瀬奈央子") },
-            //};
-
-            //employeeDict.Add(126, new Employee(126, "庄野和花"));
-
-            //foreach(var item in employeeDict.Keys) {
-            //    Console.WriteLine($"{item}");
-            //}
+            
             var prefectureOfficeDict = new Dictionary<string, string>();
 
             String prefecture;
@@ -29,38 +19,51 @@ namespace Section01 {
                 //都道府県の入力
                 Console.Write("都道府県：");
                 prefecture = Console.ReadLine();
+  
                 //県庁所在地の入力
                 Console.Write("県庁所在地：");
                 prefectural_office = Console.ReadLine();
-                
-                prefectureOfficeDict.Add(prefecture,prefectural_office);
+
+                if (prefectureOfficeDict.ContainsKey(prefecture)) {
+                    //登録済み
+                    Console.WriteLine("上書きしますか？(Y/N)");
+                    var reWrite = Console.ReadLine();
+                    if(reWrite == "N") {
+                        continue;
+                    }   
+                }
+                    prefectureOfficeDict.Add(prefecture, prefectural_office);
             }
-            while (true) {
+
+            Console.WriteLine(); //改行
+
+            Boolean endFlag = false; //終了フラグ
+            while (!endFlag) {
                 Console.WriteLine("*メニュー*");
                 Console.WriteLine("1:一覧表示");
                 Console.WriteLine("2:検索");
                 Console.WriteLine("9:終了");
-                int num = int.Parse(Console.ReadLine());
-                if (num == 1) {
-                    foreach (var item in prefectureOfficeDict) {
-                        Console.WriteLine("{0}の県庁所在地は{1}です。", item.Key, item.Value);
-                    }
-                } else if (num == 2) {
-                    Console.Write("都道府県：");
-                    prefecture = Console.ReadLine();
-                    foreach (var item in prefectureOfficeDict) {
-                        if (item.Key == prefecture) {
-                            Console.Write("県庁所在地：");
-                            Console.WriteLine(item.Value);
+                string menuSelect = Console.ReadLine();
+                switch (menuSelect) {
+                    case "1":
+                        foreach (var item in prefectureOfficeDict) {
+                            Console.WriteLine("{0}の県庁所在地は{1}です。", item.Key, item.Value);
                         }
-                    }
-                } else if (num == 9) {
-                    break;
+                        break;
+
+                    case "2":
+                        Console.Write("都道府県：");
+                        prefecture = Console.ReadLine();
+                        Console.WriteLine(prefecture + "の県庁所在地は" + prefectureOfficeDict[prefecture] + "です。");
+
+                        break;
+
+                    case "9":
+                        endFlag = true;
+                        break;
                 }
             }
-
-
-
-            }
         }
+
+    }
 }
