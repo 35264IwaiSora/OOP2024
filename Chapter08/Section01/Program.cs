@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,36 +17,16 @@ namespace Section01 {
             var day = int.Parse(Console.ReadLine());
 
             var birthday = new DateTime(year, month, day);
-            DayOfWeek dayOfWeek = birthday.DayOfWeek;
-            switch (dayOfWeek) {
-                case DayOfWeek.Sunday:
-                    Console.WriteLine("あなたは日曜日に生まれました");
-                    break;
 
-                case DayOfWeek.Monday:
-                    Console.WriteLine("あなたは月曜日に生まれました");
-                    break;
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var str =birthday.ToString("ggyy年M月d日", culture);
+            Console.WriteLine("あなたは{0}{1}に生まれました", str, birthday.ToString("dddd"));
 
-                case DayOfWeek.Tuesday:
-                    Console.WriteLine("あなたは火曜日に生まれました");
-                    break;
-                
-                case DayOfWeek.Wednesday:
-                    Console.WriteLine("あなたは水曜日に生まれました");
-                    break;
-
-                case DayOfWeek.Thursday:
-                    Console.WriteLine("あなたは木曜日に生まれました");
-                    break;
-
-                case DayOfWeek.Friday:
-                    Console.WriteLine("あなたは金曜日に生まれました");
-                    break;
-
-                case DayOfWeek.Saturday:
-                    Console.WriteLine("あなたは土曜日に生まれました");
-                    break;
-            }
+            var today = DateTime.Today;
+            today = today.AddDays(1);
+            TimeSpan diff = today.Date - birthday.Date;
+            Console.WriteLine("あなたは生まれてから{0}日目です",diff.Days);
         }
     }
 }
