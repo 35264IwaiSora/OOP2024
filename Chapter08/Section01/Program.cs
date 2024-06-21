@@ -24,7 +24,6 @@ namespace Section01 {
             Console.WriteLine("あなたは{0}{1}に生まれました", str, birthday.ToString("dddd"));
 
             var today = DateTime.Today;
-            today = today.AddDays(1);
             TimeSpan diff = today.Date - birthday.Date;
             Console.WriteLine("あなたは生まれてから{0}日目です",diff.Days);
         }
