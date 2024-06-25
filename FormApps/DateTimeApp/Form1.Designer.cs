@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             label1 = new Label();
-            dtpBirthday = new DateTimePicker();
+            dtpDate = new DateTimePicker();
             btDateCount = new Button();
             tbDsip = new TextBox();
             nudDay = new NumericUpDown();
@@ -45,12 +45,12 @@
             // 
             // dtpBirthday
             // 
-            dtpBirthday.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpBirthday.Location = new Point(147, 65);
-            dtpBirthday.Name = "dtpBirthday";
-            dtpBirthday.Size = new Size(200, 39);
-            dtpBirthday.TabIndex = 1;
-            dtpBirthday.Value = new DateTime(2024, 6, 21, 0, 0, 0, 0);
+            dtpDate.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dtpDate.Location = new Point(147, 65);
+            dtpDate.Name = "dtpBirthday";
+            dtpDate.Size = new Size(200, 39);
+            dtpDate.TabIndex = 1;
+            dtpDate.Value = new DateTime(2024, 6, 21, 0, 0, 0, 0);
             // 
             // btDateCount
             // 
@@ -111,7 +111,7 @@
             Controls.Add(nudDay);
             Controls.Add(tbDsip);
             Controls.Add(btDateCount);
-            Controls.Add(dtpBirthday);
+            Controls.Add(dtpDate);
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
@@ -123,7 +123,7 @@
         #endregion
 
         private Label label1;
-        private DateTimePicker dtpBirthday;
+        private DateTimePicker dtpDate;
         private Button btDateCount;
         private TextBox tbDsip;
         private NumericUpDown nudDay;

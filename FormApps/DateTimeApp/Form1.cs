@@ -6,22 +6,22 @@ namespace DateTimeApp {
 
         private void btDateCount_Click(object sender, EventArgs e) {
             var today = DateTime.Today;
-            TimeSpan diff = today - dtpBirthday.Value;
+            TimeSpan diff = today - dtpDate.Value;
             tbDsip.Text = diff.Days + 1 + "ì˙ñ⁄";
             //tbDsip.Text = "ÅõÅõì˙ñ⁄";
             //tbDsip.Text = dtpBirthday.Value.ToString("d");
         }
 
         private void btDayBefor_Click(object sender, EventArgs e) {
-            var day = dtpBirthday.Value; ;
-            var past = nudDay.Value;
-            tbDsip.Text = day.AddDays((double)past*-1).ToString();
+            var day = dtpDate.Value; 
+            var past = day.AddDays(-(double)nudDay.Value);
+            tbDsip.Text = past.ToString();
         }
 
         private void btDayAfter_Click(object sender, EventArgs e) {
-            var day = dtpBirthday.Value; ;
-            var past = nudDay.Value;
-            tbDsip.Text = day.AddDays((double)past).ToString();
+            var day = dtpDate.Value; ;
+            var future = day.AddDays((double)nudDay.Value);
+            tbDsip.Text = future.ToString();
         }
     }
 }
