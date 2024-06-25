@@ -12,9 +12,13 @@ namespace Exercise01 {
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
             var str = now.ToString("ggyy”NMŒŽd“údddd", culture);
 
-            tbDisp.Text = now.ToString("G")+"\r\n"
-            + now.ToString("yyyy”NMMŒŽdd“ú HHŽžmm•ªss•b") + "\r\n"
-            + str.ToString();
+            tbDisp.Text = now.ToString("G") + "\r\n";
+            tbDisp.Text += now.ToString("yyyy”NMMŒŽdd“ú HHŽžmm•ªss•b") + "\r\n";
+            tbDisp.Text += str.ToString();
+        }
+
+        private void btEx8_2_Click(object sender, EventArgs e) {
+
         }
     }
 }
