@@ -261,6 +261,7 @@
             btAddReport.TabIndex = 5;
             btAddReport.Text = "追加";
             btAddReport.UseVisualStyleBackColor = true;
+            btAddReport.Click += btAddReport_Click;
             // 
             // btModifyReport
             // 
