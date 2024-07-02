@@ -90,10 +90,7 @@ namespace CarReportSystem {
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            DataGridViewSelectedRowCollection src = dgvCarReport.SelectedRows;
-            for (int i = src.Count - 1; i >= 0; i--) {
-                dgvCarReport.Rows.RemoveAt(src[i].Index);
-            }
+            listCarReport.RemoveAt(listCarReport.Count - 1);
         }
         private void btModifyReport_Click(object sender, EventArgs e) {
 
