@@ -64,7 +64,6 @@ namespace CarReportSystem {
             }
         }
 
-
         private void btPicOpen_Click(object sender, EventArgs e) {
             if (ofdPicFileOpen.ShowDialog() == DialogResult.OK)
                 pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
@@ -90,10 +89,22 @@ namespace CarReportSystem {
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            listCarReport.RemoveAt(listCarReport.Count - 1);
+            listCarReport.RemoveAt(dgvCarReport.CurrentRow.Index);
         }
         private void btModifyReport_Click(object sender, EventArgs e) {
+            var rowIndex = dgvCarReport.CurrentRow.Index;
+            CarReport carReport = new CarReport {
+                Date = dtpDate.Value,
+                Author = cbAuthor.Text,
+                Maker = GetRadioButtonMaker(),
+                CarName = cbCarName.Text,
+                Report = tbReport.Text,
+                Picture = pbPicture.Image,
+            };
+            listCarReport[rowIndex] = carReport;
 
+
+            dgvCarReport.Refresh(); //データグリッドビューの更新
         }
     }
 }
