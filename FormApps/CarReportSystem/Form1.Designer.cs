@@ -52,9 +52,12 @@
             btRepotSave = new Button();
             groupBox1 = new GroupBox();
             ofdPicFileOpen = new OpenFileDialog();
+            ssMessageArea = new StatusStrip();
+            tslbMessage = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
             groupBox1.SuspendLayout();
+            ssMessageArea.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -301,11 +304,14 @@
             // 
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
+            dgvCarReport.AllowUserToResizeColumns = false;
+            dgvCarReport.AllowUserToResizeRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCarReport.Location = new Point(93, 338);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
             dgvCarReport.ReadOnly = true;
+            dgvCarReport.RowHeadersVisible = false;
             dgvCarReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCarReport.Size = new Size(599, 150);
             dgvCarReport.TabIndex = 7;
@@ -347,11 +353,27 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // ssMessageArea
+            // 
+            ssMessageArea.Items.AddRange(new ToolStripItem[] { tslbMessage });
+            ssMessageArea.Location = new Point(0, 532);
+            ssMessageArea.Name = "ssMessageArea";
+            ssMessageArea.Size = new Size(734, 22);
+            ssMessageArea.TabIndex = 9;
+            ssMessageArea.Text = "statusStrip1";
+            // 
+            // tslbMessage
+            // 
+            tslbMessage.Name = "tslbMessage";
+            tslbMessage.Size = new Size(118, 17);
+            tslbMessage.Text = "toolStripStatusLabel1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(734, 518);
+            ClientSize = new Size(734, 554);
+            Controls.Add(ssMessageArea);
             Controls.Add(groupBox1);
             Controls.Add(dgvCarReport);
             Controls.Add(pbPicture);
@@ -381,6 +403,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ssMessageArea.ResumeLayout(false);
+            ssMessageArea.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -416,5 +440,7 @@
         private Button btRepotSave;
         private GroupBox groupBox1;
         private OpenFileDialog ofdPicFileOpen;
+        private StatusStrip ssMessageArea;
+        private ToolStripStatusLabel tslbMessage;
     }
 }
