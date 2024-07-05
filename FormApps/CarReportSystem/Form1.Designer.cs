@@ -153,7 +153,6 @@
             rbToyota.Name = "rbToyota";
             rbToyota.Size = new Size(50, 19);
             rbToyota.TabIndex = 3;
-            rbToyota.TabStop = true;
             rbToyota.Text = "トヨタ";
             rbToyota.UseVisualStyleBackColor = true;
             // 
@@ -164,7 +163,6 @@
             rbNissan.Name = "rbNissan";
             rbNissan.Size = new Size(49, 19);
             rbNissan.TabIndex = 3;
-            rbNissan.TabStop = true;
             rbNissan.Text = "日産";
             rbNissan.UseVisualStyleBackColor = true;
             // 
@@ -175,7 +173,6 @@
             rbHonda.Name = "rbHonda";
             rbHonda.Size = new Size(53, 19);
             rbHonda.TabIndex = 3;
-            rbHonda.TabStop = true;
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
             // 
@@ -194,7 +191,6 @@
             rbSubaru.Name = "rbSubaru";
             rbSubaru.Size = new Size(54, 19);
             rbSubaru.TabIndex = 3;
-            rbSubaru.TabStop = true;
             rbSubaru.Text = "スバル";
             rbSubaru.UseVisualStyleBackColor = true;
             // 
@@ -205,13 +201,13 @@
             rbInport.Name = "rbInport";
             rbInport.Size = new Size(61, 19);
             rbInport.TabIndex = 3;
-            rbInport.TabStop = true;
             rbInport.Text = "輸入車";
             rbInport.UseVisualStyleBackColor = true;
             // 
             // rbAther
             // 
             rbAther.AutoSize = true;
+            rbAther.Checked = true;
             rbAther.Location = new Point(298, 9);
             rbAther.Name = "rbAther";
             rbAther.Size = new Size(56, 19);
@@ -359,6 +355,7 @@
             ssMessageArea.Location = new Point(0, 532);
             ssMessageArea.Name = "ssMessageArea";
             ssMessageArea.Size = new Size(734, 22);
+            ssMessageArea.SizingGrip = false;
             ssMessageArea.TabIndex = 9;
             ssMessageArea.Text = "statusStrip1";
             // 
@@ -396,6 +393,8 @@
             Controls.Add(label6);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
             Load += Form1_Load;
