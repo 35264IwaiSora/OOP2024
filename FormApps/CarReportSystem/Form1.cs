@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic;
 using System.ComponentModel;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace CarReportSystem {
@@ -13,11 +14,11 @@ namespace CarReportSystem {
         }
 
         private void btAddReport_Click(object sender, EventArgs e) {
-            if (cbAuthor.Text == ""|| cbCarName.Text == "") {
+            if (cbAuthor.Text == "" || cbCarName.Text == "") {
                 tslbMessage.Text = "記録者、または車名が未入力です";
                 return;
             }
-           
+
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -52,16 +53,16 @@ namespace CarReportSystem {
         }
         //記録者の履歴をコンボボックスへ登録（重複なし）
         private void setCbAuthor(string author) {
-            if(!cbAuthor.Items.Contains(author))
-            cbAuthor.Items.Add(author);
+            if (!cbAuthor.Items.Contains(author))
+                cbAuthor.Items.Add(author);
         }
-            
+
         //車名の履歴をコンボボックスへ登録（重複なし）
         private void setCbCarName(string carName) {
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
         }
-        
+
         //選択されているメーカー名を列挙型で返す
         private CarReport.MakerGroup GetRadioButtonMaker() {
             if (rbToyota.Checked)
@@ -122,7 +123,7 @@ namespace CarReportSystem {
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
             if (dgvCarReport.Rows.Count == 0) return;
-            if(!dgvCarReport.CurrentRow.Selected) return;
+            if (!dgvCarReport.CurrentRow.Selected) return;
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
             setRadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
@@ -132,11 +133,11 @@ namespace CarReportSystem {
         }
         //削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow  == null 
+            if (dgvCarReport.CurrentRow == null
                     || (!dgvCarReport.CurrentRow.Selected)) return;
             if (listCarReport.Count == 0) {
                 tslbMessage.Text = "削除できるデータがありません";
-                return; 
+                return;
             }
             listCarReport.RemoveAt(dgvCarReport.CurrentRow.Index);
             inputItemsAllClear();
@@ -170,6 +171,53 @@ namespace CarReportSystem {
 
             dgvCarReport.Refresh(); //データグリッドビューの更新
             tslbMessage.Text = "";
+        }
+        //保存ボタン
+        private void btRepotSave_Click(object sender, EventArgs e) {
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // 型またはメンバーが旧型式です
+                    using (FileStream fs = File.Open(sfdReportFileSave.FileName, FileMode.Create)) {
+                        bf.Serialize(fs, listCarReport);
+
+                    }
+                }
+                catch (Exception) {
+
+                    throw;
+                }
+            }
+        }
+
+        private void btReportOpen_Click(object sender, EventArgs e) {
+            if (ofdPicFileOpen.ShowDialog() == DialogResult.OK) {
+                try {
+                    //逆シリアル化でバイナリ形式を取り込む
+#pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // 型またはメンバーが旧型式です
+
+                    using (FileStream fs = File.Open(ofdPicFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvCarReport.DataSource = listCarReport;
+                    }
+                }
+                catch (Exception) {
+
+                    throw;
+                }
+                setCbAuthor((string)dgvCarReport.CurrentRow.Cells["Author"].Value);
+                setCbCarName((string)dgvCarReport.CurrentRow.Cells["CarName"].Value);
+                dgvCarReport.ClearSelection();
+            }
+        }
+
+        private void btClear_Click(object sender, EventArgs e) {
+            inputItemsAllClear();
+            rbAllCleaa();
         }
     }
 }

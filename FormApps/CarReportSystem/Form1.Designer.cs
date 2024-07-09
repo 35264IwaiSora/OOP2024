@@ -54,6 +54,9 @@
             ofdPicFileOpen = new OpenFileDialog();
             ssMessageArea = new StatusStrip();
             tslbMessage = new ToolStripStatusLabel();
+            sfdReportFileSave = new SaveFileDialog();
+            ofdReportFileOpen = new OpenFileDialog();
+            btClear = new Button();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
             groupBox1.SuspendLayout();
@@ -321,6 +324,7 @@
             btReportOpen.TabIndex = 5;
             btReportOpen.Text = "開く…";
             btReportOpen.UseVisualStyleBackColor = true;
+            btReportOpen.Click += btReportOpen_Click;
             // 
             // btRepotSave
             // 
@@ -330,6 +334,7 @@
             btRepotSave.TabIndex = 5;
             btRepotSave.Text = "保存";
             btRepotSave.UseVisualStyleBackColor = true;
+            btRepotSave.Click += btRepotSave_Click;
             // 
             // groupBox1
             // 
@@ -365,11 +370,26 @@
             tslbMessage.Size = new Size(118, 17);
             tslbMessage.Text = "toolStripStatusLabel1";
             // 
+            // ofdReportFileOpen
+            // 
+            ofdReportFileOpen.FileName = "openFileDialog1";
+            // 
+            // btClear
+            // 
+            btClear.Location = new Point(318, 21);
+            btClear.Name = "btClear";
+            btClear.Size = new Size(75, 31);
+            btClear.TabIndex = 10;
+            btClear.Text = "クリア";
+            btClear.UseVisualStyleBackColor = true;
+            btClear.Click += btClear_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(734, 554);
+            Controls.Add(btClear);
             Controls.Add(ssMessageArea);
             Controls.Add(groupBox1);
             Controls.Add(dgvCarReport);
@@ -441,5 +461,8 @@
         private OpenFileDialog ofdPicFileOpen;
         private StatusStrip ssMessageArea;
         private ToolStripStatusLabel tslbMessage;
+        private SaveFileDialog sfdReportFileSave;
+        private OpenFileDialog ofdReportFileOpen;
+        private Button btClear;
     }
 }
