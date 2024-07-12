@@ -9,9 +9,9 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
-
+        
         //設定クラスインスタンス
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         //コンストラクタ
         public Form1() {
