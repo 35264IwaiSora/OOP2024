@@ -9,7 +9,7 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
-        
+
         //設定クラスインスタンス
         Settings settings = Settings.getInstance();
 
@@ -144,7 +144,7 @@ namespace CarReportSystem {
             } else {
                 tslbMessage.Text = "色情報ファイルがありません";
             }
-            
+
         }
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
@@ -293,6 +293,11 @@ namespace CarReportSystem {
 
                 MessageBox.Show("設定ファイルの書き込みエラー");
             }
+        }
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();
         }
     }
 }
