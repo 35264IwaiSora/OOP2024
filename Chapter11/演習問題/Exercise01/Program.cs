@@ -43,12 +43,30 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(string file) {
+            var xdoc = XDocument.Load("sample.xml");
+            var xelements = xdoc.Root.Elements().OrderByDescending(x => x.Element("teammembers").Value).First();
+            Console.WriteLine(xelements.Element("name").Value);
             
-            
-        }
+        }   
 
         private static void Exercise1_4(string file, string newfile) {
-            
+            var element = new XElement("sample.xml",
+                new XElement("name" ,"サッカー",new XAttribute("kanji","蹴球")),
+                new XElement("teammembers","11"),
+                new XElement("firstplayed","1863")
+                );
+            var xdoc = XDocument.Load("sample.xml");
+            xdoc.Root.Add(element);
+            //確認用
+            foreach (var xElement in xdoc.Root.Elements()) {
+                var xname = xElement.Element("name");
+                var xkanji = xname.Attribute("kanji");
+                var xmenber = xElement.Element("teammembers");
+                var xyear = xElement.Element("firstplayed");
+                Console.WriteLine("{0},{1},{2},{3}", xname.Value,xkanji.Value,xmenber.Value,xyear.Value);
+            }
+            //保存
+            xdoc.Save("sports.xml");
         }
     }
 }
