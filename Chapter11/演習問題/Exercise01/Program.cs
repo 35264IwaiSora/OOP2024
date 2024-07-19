@@ -50,12 +50,12 @@ namespace Exercise01 {
         }   
 
         private static void Exercise1_4(string file, string newfile) {
-            var element = new XElement("sample.xml",
+            var element = new XElement("ballsport",
                 new XElement("name" ,"サッカー",new XAttribute("kanji","蹴球")),
                 new XElement("teammembers","11"),
                 new XElement("firstplayed","1863")
                 );
-            var xdoc = XDocument.Load("sample.xml");
+            var xdoc = XDocument.Load(file);
             xdoc.Root.Add(element);
             //確認用
             foreach (var xElement in xdoc.Root.Elements()) {
@@ -66,7 +66,7 @@ namespace Exercise01 {
                 Console.WriteLine("{0},{1},{2},{3}", xname.Value,xkanji.Value,xmenber.Value,xyear.Value);
             }
             //保存
-            xdoc.Save("sports.xml");
+            xdoc.Save(newfile);
         }
     }
 }
