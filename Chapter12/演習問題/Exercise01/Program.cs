@@ -73,7 +73,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(string file) {
-            
+            using(XmlReader reader = XmlReader.Create(file)) {
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var employees = serializer.ReadObject(reader)as Employee[];
+                foreach (var emps in employees){
+                    Console.WriteLine("{0}{1}{2}",emps.Id,emps.Name,emps.HireDate);
+                }
+            }  
         }
 
         private static void Exercise1_4(string file) {
