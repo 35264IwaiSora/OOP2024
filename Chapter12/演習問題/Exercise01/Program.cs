@@ -48,7 +48,7 @@ namespace Exercise01 {
             using (var reader = XmlReader.Create("employee.xml")) {
                 var serializer = new XmlSerializer(typeof(Employee));
                 employees = serializer.Deserialize(reader) as Employee;
-                Console.WriteLine(employees);
+                
             }
 
         }
@@ -77,7 +77,7 @@ namespace Exercise01 {
                 var serializer = new DataContractSerializer(typeof(Employee[]));
                 var employees = serializer.ReadObject(reader)as Employee[];
                 foreach (var emps in employees){
-                    Console.WriteLine("{0}{1}{2}",emps.Id,emps.Name,emps.HireDate);
+                    Console.WriteLine("{0} {1} {2}",emps.Id,emps.Name,emps.HireDate);
                 }
             }  
         }
