@@ -15,7 +15,7 @@ namespace SampleEntityFramwork.Models {
         }
 
         public DbSet<Book> Books { get; set;}
-        public DbSet<Auther> Authers { get; set;}
+        public DbSet<Author> Authers { get; set;}
 
         // モデルに含めるエンティティ型ごとに DbSet を追加します。Code First モデルの構成および使用の
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=390109 を参照してください。
