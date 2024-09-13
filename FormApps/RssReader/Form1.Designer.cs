@@ -36,12 +36,14 @@
             // 
             // btGet
             // 
-            this.btGet.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btGet.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btGet.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.btGet.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btGet.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btGet.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btGet.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btGet.Location = new System.Drawing.Point(588, 17);
+            this.btGet.Location = new System.Drawing.Point(588, 13);
             this.btGet.Name = "btGet";
-            this.btGet.Size = new System.Drawing.Size(75, 23);
+            this.btGet.Size = new System.Drawing.Size(75, 27);
             this.btGet.TabIndex = 1;
             this.btGet.Text = "取得";
             this.btGet.UseVisualStyleBackColor = false;
@@ -49,11 +51,12 @@
             // 
             // lbRssTitle
             // 
+            this.lbRssTitle.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbRssTitle.FormattingEnabled = true;
-            this.lbRssTitle.ItemHeight = 12;
+            this.lbRssTitle.ItemHeight = 16;
             this.lbRssTitle.Location = new System.Drawing.Point(24, 103);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(418, 628);
+            this.lbRssTitle.Size = new System.Drawing.Size(250, 628);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
@@ -62,32 +65,36 @@
             this.xvRssBrowser.AllowExternalDrop = true;
             this.xvRssBrowser.CreationProperties = null;
             this.xvRssBrowser.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.xvRssBrowser.Location = new System.Drawing.Point(448, 103);
+            this.xvRssBrowser.Location = new System.Drawing.Point(292, 103);
             this.xvRssBrowser.Name = "xvRssBrowser";
-            this.xvRssBrowser.Size = new System.Drawing.Size(399, 630);
+            this.xvRssBrowser.Size = new System.Drawing.Size(555, 630);
             this.xvRssBrowser.TabIndex = 3;
             this.xvRssBrowser.ZoomFactor = 1D;
             // 
             // tbfavorite
             // 
+            this.tbfavorite.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbfavorite.Location = new System.Drawing.Point(130, 58);
             this.tbfavorite.Name = "tbfavorite";
-            this.tbfavorite.Size = new System.Drawing.Size(452, 19);
+            this.tbfavorite.Size = new System.Drawing.Size(452, 23);
             this.tbfavorite.TabIndex = 0;
             // 
             // cbRssUrl
             // 
+            this.cbRssUrl.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbRssUrl.FormattingEnabled = true;
-            this.cbRssUrl.Location = new System.Drawing.Point(130, 17);
+            this.cbRssUrl.Location = new System.Drawing.Point(130, 16);
             this.cbRssUrl.Name = "cbRssUrl";
-            this.cbRssUrl.Size = new System.Drawing.Size(452, 20);
+            this.cbRssUrl.Size = new System.Drawing.Size(452, 24);
             this.cbRssUrl.TabIndex = 4;
             // 
             // btregistration
             // 
+            this.btregistration.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btregistration.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btregistration.Location = new System.Drawing.Point(588, 58);
             this.btregistration.Name = "btregistration";
-            this.btregistration.Size = new System.Drawing.Size(75, 23);
+            this.btregistration.Size = new System.Drawing.Size(75, 27);
             this.btregistration.TabIndex = 5;
             this.btregistration.Text = "登録";
             this.btregistration.UseVisualStyleBackColor = true;
@@ -96,18 +103,20 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.Location = new System.Drawing.Point(90, 17);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 19);
+            this.textBox1.Size = new System.Drawing.Size(34, 23);
             this.textBox1.TabIndex = 6;
             this.textBox1.Text = "検索";
             // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBox2.Location = new System.Drawing.Point(66, 58);
+            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox2.Location = new System.Drawing.Point(46, 58);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(58, 19);
+            this.textBox2.Size = new System.Drawing.Size(78, 23);
             this.textBox2.TabIndex = 7;
             this.textBox2.Text = "お気に入り";
             // 

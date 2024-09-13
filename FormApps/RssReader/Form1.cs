@@ -44,8 +44,6 @@ namespace RssReader {
             cbRssUrl.SelectedIndex = -1;
         }
 
-        
-
         private void AddCbBox() {
             cbRssUrl.DataSource = new BindingSource(topics, null);
             cbRssUrl.DisplayMember = "Key";
@@ -58,43 +56,49 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+            //検索
             string cbBox = cbRssUrl.Text;
-            if (cbRssUrl.Text.Contains("yahoo.co.jp/rss/")) {
-                using (var wc = new WebClient()) {
-                    var url = wc.OpenRead(cbRssUrl.Text);
-                    var xdoc = XDocument.Load(url);
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
+                if (cbRssUrl.Text.Contains("yahoo.co.jp/rss/")) {
+                    using (var wc = new WebClient()) {
+                        var url = wc.OpenRead(cbRssUrl.Text);
+                        var xdoc = XDocument.Load(url);
 
-                    items = xdoc.Root.Descendants("item")
-                                        .Select(item => new ItemData {
-                                            Title = item.Element("title").Value,
-                                            Link = item.Element("link").Value,
-                                        }).ToList();
+                        items = xdoc.Root.Descendants("item")
+                                            .Select(item => new ItemData {
+                                                Title = item.Element("title").Value,
+                                                Link = item.Element("link").Value,
+                                            }).ToList();
 
-                    foreach (var item in items) {
-                        lbRssTitle.Items.Add(item.Title);
+                        foreach (var item in items) {
+                            lbRssTitle.Items.Add(item.Title);
+                        }
+
                     }
-                   
-                }
-            } else if(topics.ContainsKey(cbBox)) {
-                var set = (KeyValuePair<string, string>)cbRssUrl.SelectedItem;
-                var topicurl = set.Value;
-                using (var wc = new WebClient()) {
-                    var url = topicurl.ToString();
-                    var xdoc = XDocument.Load(url);
+                } else if (topics.ContainsKey(cbBox)) {
+                    var set = (KeyValuePair<string, string>)cbRssUrl.SelectedItem;
+                    var topicurl = set.Value;
+                    using (var wc = new WebClient()) {
+                        var url = topicurl.ToString();
+                        var xdoc = XDocument.Load(url);
 
-                    items = xdoc.Root.Descendants("item")
-                                        .Select(item => new ItemData {
-                                            Title = item.Element("title").Value,
-                                            Link = item.Element("link").Value,
-                                        }).ToList();
+                        items = xdoc.Root.Descendants("item")
+                                            .Select(item => new ItemData {
+                                                Title = item.Element("title").Value,
+                                                Link = item.Element("link").Value,
+                                            }).ToList();
 
-                    foreach (var item in items) {
-                        lbRssTitle.Items.Add(item.Title);
+                        foreach (var item in items) {
+                            lbRssTitle.Items.Add(item.Title);
+                        }
                     }
+                } else {
+                    MessageBox.Show("正しいURLを入力してください", "エラー");
                 }
             } else {
-                MessageBox.Show("正しいURLを入力してください", "エラー");
+                MessageBox.Show("ネットワークに接続してください", "エラー");
             }
+            
         }
 
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
@@ -104,6 +108,7 @@ namespace RssReader {
         }
 
         private void btregistration_Click(object sender, EventArgs e) {
+            //お気に入り登録
             if(tbfavorite != null && cbRssUrl.Text.Contains("yahoo.co.jp/rss/")) {
                 topics.Add(tbfavorite.Text, cbRssUrl.Text);
                 AddCbBox();
@@ -114,7 +119,6 @@ namespace RssReader {
             
         }
     }
-
 
     //データ格納用のクラス
     public class ItemData {
