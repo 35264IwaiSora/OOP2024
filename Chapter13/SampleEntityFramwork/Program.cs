@@ -1,6 +1,7 @@
 ﻿using SampleEntityFramwork.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +10,12 @@ namespace SampleEntityFramwork {
     internal class Program {
         static void Main(string[] args) {
             //InsertBooks();
-            AddBooks();
+            //AddBooks();
             //AddAuthors();
-            foreach (var item in GetBooks()){
-                Console.WriteLine("{0}",item.Title);
-            }
-
+            //foreach (var item in GetBooks()){
+            //    Console.WriteLine("{0}",item.Title);
+            //}
+            DisplayAllBooks();
         }
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
@@ -112,6 +113,13 @@ namespace SampleEntityFramwork {
                 var book = db.Books.SingleOrDefault(x => x.Id == 10);
                 db.Books.Remove(book);
                 db.SaveChanges();
+            }
+        }
+        static void DisplayAllBooks() { 
+            using( var db = new BooksDbContext()) {
+                foreach (var item in db.Books.ToList()){
+                    Console.WriteLine("{0},{1},{2},({3:yyyy/MM/dd})",item.Title,item.PublishedYear,item.Author.Name,item.Author.Birthday);
+                }
             }
         }
     }
