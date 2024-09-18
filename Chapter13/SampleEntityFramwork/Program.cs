@@ -9,14 +9,24 @@ using System.Threading.Tasks;
 namespace SampleEntityFramwork {
     internal class Program {
         static void Main(string[] args) {
+
             //InsertBooks();
             //AddBooks();
             //AddAuthors();
             //foreach (var item in GetBooks()){
             //    Console.WriteLine("{0}",item.Title);
             //}
-            DisplayAllBooks();
+            DisplayAllBooks3();
+            Console.WriteLine();
+            Console.WriteLine("#1.4");
+            Exercice1_4();
+            Console.WriteLine();
+            Console.WriteLine("#1.5");
+            Exercice1_5();
         }
+
+       
+
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
                 var book1 = new Book {
@@ -101,8 +111,8 @@ namespace SampleEntityFramwork {
             }
         }
         //データの変更
-        private static void UpdateBook() { 
-            using ( var db = new BooksDbContext()) {
+        private static void UpdateBook() {
+            using (var db = new BooksDbContext()) {
                 var book = db.Books.Single(x => x.Title == "銀河鉄道の夜");
                 book.PublishedYear = 2016;
                 db.Books.Add(book);
@@ -115,12 +125,29 @@ namespace SampleEntityFramwork {
                 db.SaveChanges();
             }
         }
-        static void DisplayAllBooks() { 
-            using( var db = new BooksDbContext()) {
-                foreach (var item in db.Books.ToList()){
-                    Console.WriteLine("{0},{1},{2},({3:yyyy/MM/dd})",item.Title,item.PublishedYear,item.Author.Name,item.Author.Birthday);
+        static void DisplayAllBooks2() {
+            using (var db = new BooksDbContext()) {
+                foreach (var item in db.Books.ToList()) {
+                    Console.WriteLine("{0},{1},{2},({3:yyyy/MM/dd})", item.Title, item.PublishedYear, item.Author.Name, item.Author.Birthday);
+
                 }
             }
+        }
+        static void DisplayAllBooks3() {
+            using (var db = new BooksDbContext()) {
+                var maxTitle = db.Books.Max(x => x.Title.Length);
+                foreach (var item in db.Books.Where(s => s.Title.Length == maxTitle).ToList()) {
+                    Console.WriteLine(item.Title);
+                }
+
+            }
+        }
+        private static void Exercice1_4() {
+            
+        }
+
+        private static void Exercice1_5() {
+            
         }
     }
 }
