@@ -135,15 +135,21 @@ namespace SampleEntityFramwork {
         }
         static void DisplayAllBooks3() {
             using (var db = new BooksDbContext()) {
-                var maxTitle = db.Books.Max(x => x.Title.Length);
-                foreach (var item in db.Books.Where(s => s.Title.Length == maxTitle).ToList()) {
+                var books = db.Books.Where(s => s.Title.Length == db.Books.Max(x => x.Title.Length)).ToList();
+                foreach (var item in books) {
                     Console.WriteLine(item.Title);
                 }
 
             }
         }
         private static void Exercice1_4() {
-            
+            using (var db = new BooksDbContext()) {
+                var books = db.Books.OrderBy(s => s.PublishedYear).ToList();
+                for (var i = 0; i < 3; i++) {
+                    Console.WriteLine("{0},{1}",books[i].Title, books[i].Author.Name);
+                }
+            }
+
         }
 
         private static void Exercice1_5() {
