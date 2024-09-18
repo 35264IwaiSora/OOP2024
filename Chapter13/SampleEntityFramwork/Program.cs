@@ -155,7 +155,7 @@ namespace SampleEntityFramwork {
 
         private static void Exercice1_5() {
             using (var db = new BooksDbContext()) {
-                var names = db.Authers.OrderBy(s => s.Birthday).ToList();
+                var names = db.Authers.OrderByDescending(s => s.Birthday).ToList();
                 foreach (var name in names) {
                     Console.WriteLine(name.Name);
                     foreach (var item in name.Books) {
