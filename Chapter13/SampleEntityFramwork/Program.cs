@@ -25,7 +25,7 @@ namespace SampleEntityFramwork {
             Exercice1_5();
         }
 
-       
+
 
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
@@ -142,18 +142,28 @@ namespace SampleEntityFramwork {
 
             }
         }
+
         private static void Exercice1_4() {
             using (var db = new BooksDbContext()) {
-                var books = db.Books.OrderBy(s => s.PublishedYear).ToList();
-                for (var i = 0; i < 3; i++) {
-                    Console.WriteLine("{0},{1}",books[i].Title, books[i].Author.Name);
+                var books = db.Books.OrderBy(s => s.PublishedYear).Take(3).ToList();
+
+                foreach (var book in books) {
+                    Console.WriteLine("{0},{1}", book.Title, book.Author.Name);
                 }
             }
-
         }
 
         private static void Exercice1_5() {
-            
+            using (var db = new BooksDbContext()) {
+                var names = db.Authers.OrderBy(s => s.Birthday).ToList();
+                foreach (var name in names) {
+                    Console.WriteLine(name.Name);
+                    foreach (var item in name.Books) {
+                        Console.WriteLine("{0},{1}",item.Title,item.PublishedYear);
+                   }
+                }
+            }
+
         }
     }
 }
