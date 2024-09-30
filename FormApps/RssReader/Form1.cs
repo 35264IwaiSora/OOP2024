@@ -56,6 +56,7 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+            lbRssTitle.Items.Clear();
             //検索
             string cbBox = cbRssUrl.Text;
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
@@ -102,6 +103,7 @@ namespace RssReader {
         }
 
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+            
             if (xvRssBrowser != null && xvRssBrowser.CoreWebView2 != null) {
                 xvRssBrowser.CoreWebView2.Navigate(items[lbRssTitle.SelectedIndex].Link);
             }
