@@ -57,19 +57,54 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
-            
+
+            var query = Library.Books
+                .Where(b => b.PublishedYear == 2016)
+                .Join(Library.Categories, //結合する2番目のシーケンス
+                book => book.CategoryId,  //対象シーケンスの結合キー
+                category => category.Id,  //2番目のシーケンスの結合キー
+                (book, category) => category.Name).Distinct();
+            foreach (var name in query) {
+                Console.WriteLine(name);
+            }
         }
 
         private static void Exercise1_6() {
-            throw new NotImplementedException();
+            var query = Library.Books
+                .Join(Library.Categories,   //結合する2番目のシーケンス
+                    book => book.CategoryId,//対象シーケンスの結合キー
+                    category => category.Id,// 2番目のシーケンスの結合キー
+                    (book, category) => new {
+                        book.Title,
+                        CategoryName = category.Name
+                    })
+                    .GroupBy(b => b.CategoryName)
+                    .OrderBy(x => x.Key);
+            foreach (var group in query)
+            {
+                Console.WriteLine("#{0}", group.Key);
+                foreach (var item in group)
+                {
+                    Console.WriteLine("  {0}",item.Title);
+                }
+            }
         }
 
         private static void Exercise1_7() {
-            throw new NotImplementedException();
+            var categorysId = Library.Categories.Single(c=>c.Name == "Development").Id;
+            var query = Library.Books.Where(b => b.CategoryId == categorysId)
+                                        .GroupBy(b=>b.PublishedYear)
+                                        .OrderBy(b=>b.Key);
+            foreach (var group in query) {
+                Console.WriteLine("#{0}", group.Key);
+                foreach (var item in group) {
+                    Console.WriteLine("  {0}", item.Title);
+                }
+            }
         }
 
         private static void Exercise1_8() {
-            throw new NotImplementedException();
+           
         }
     }
 }
