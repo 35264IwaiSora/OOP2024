@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Toolkit.Forms.UI.Controls;
 using Microsoft.Web.WebView2.Wpf;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
