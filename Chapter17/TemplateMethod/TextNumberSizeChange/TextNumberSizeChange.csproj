@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameWork\ITextFileService.cs" />
+    <Compile Include="FrameWork\TextFileProcessor.cs" />
     <Compile Include="ToHankakuProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
