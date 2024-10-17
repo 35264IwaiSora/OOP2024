@@ -30,7 +30,7 @@ namespace TextNumberSizeChange {
         }
 
         public void Terminate() {
-            throw new NotImplementedException();
+           
         }
     }  
 }
