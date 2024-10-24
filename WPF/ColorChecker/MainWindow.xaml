@@ -29,24 +29,43 @@
 
             <TextBlock  Text="R" HorizontalAlignment="Center" FontSize="40"/>
             <Slider x:Name="rSlider" Maximum="255" Grid.Column="1"   VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
-            <TextBox x:Name="rValue" Grid.Column="2"   VerticalAlignment="Center" FontSize="20" />
+            <TextBox x:Name="rValue" Grid.Column="2"   VerticalAlignment="Center" FontSize="20" 
+                     Text="{Binding ElementName=rSlider,Path=Value, UpdateSourceTrigger=PropertyChanged, StringFormat=0}"/>
 
             <TextBlock Grid.Row="1"  Text="G" HorizontalAlignment="Center" FontSize="40"/>
             <Slider x:Name="gSlider" Maximum="255" Grid.Column="1"   Grid.Row="1" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
-            <TextBox x:Name="gValue" Grid.Column="2"   Grid.Row="1"   VerticalAlignment="Center" FontSize="20" />
+            <TextBox x:Name="gValue" Grid.Column="2"   Grid.Row="1"   VerticalAlignment="Center" FontSize="20" 
+                     Text="{Binding ElementName=gSlider,Path=Value, UpdateSourceTrigger=PropertyChanged, StringFormat=0}"/>
+            
 
             <TextBlock Grid.Row="2"  Text="B" HorizontalAlignment="Center" FontSize="40"/>
             <Slider x:Name="bSlider" Maximum="255" Grid.Column="1"   Grid.Row="2" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
-            <TextBox x:Name="bValue" Grid.Column="2"   Grid.Row="2" VerticalAlignment="Center" FontSize="20" />
+            <TextBox x:Name="bValue" Grid.Column="2"   Grid.Row="2" VerticalAlignment="Center" FontSize="20"
+                     Text="{Binding ElementName=bSlider,Path=Value, UpdateSourceTrigger=PropertyChanged, StringFormat=0}"/>
 
-            <ComboBox x:Name="colorComboBox" Grid.Column="1" Grid.Row="3" Margin="10,20"/>
+            <ComboBox x:Name="colorComboBox" Grid.Column="1" Grid.Row="3" Margin="10,20" 
+                      ItemsSource="{Binding}" SelectedValue="{Binding Color}" SelectionChanged="colorComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height ="*"/>
                 <RowDefinition Height ="5*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="stockButton" Content="STOCK" Margin="10" FontSize="16" Background="LightCyan"/>
+            <Button x:Name="stockButton" Content="STOCK" Margin="10" FontSize="16" Background="LightCyan" Click="stockButton_Click" />
             <ListBox x:Name="stockList" Grid.Row="1" Margin="10,0,10,10" Background="LightCyan"/>
 
         </Grid>

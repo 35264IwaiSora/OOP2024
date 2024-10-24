@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,21 +19,42 @@ namespace ColorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        MyColor currentColor = new MyColor();
         public MainWindow() {
             InitializeComponent();
+            //αチャンネルの初期値を設定
+            currentColor.Color = Color.FromArgb(255, 0, 0, 0);
+            colorComboBox.DataContext = GetColorList();
         }
 
+        private MyColor[] GetColorList() {
+            return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
+        }
+
+        //スライドを動かすと呼ばれる
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            int rvalue = (int)rSlider.Value;
-            int gvalue = (int)gSlider.Value;
-            int bvalue = (int)bSlider.Value;
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
 
-            rValue.Text = rvalue.ToString();
-            gValue.Text = gvalue.ToString();
-            bValue.Text = bvalue.ToString();
+        }
 
-            colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rvalue, (byte)gvalue, (byte)bvalue));
+        private void stockButton_Click(object sender, RoutedEventArgs e) {
+            if (!stockList.Items.Contains(currentColor)) {
+                stockList.Items.Insert(0, currentColor);
+            }
+            
+        }
 
+        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
+            gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
+            bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
+        }
+
+        private void colorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            
         }
     }
 }
