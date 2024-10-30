@@ -36,16 +36,17 @@ namespace ColorChecker {
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
             colorArea.Background = new SolidColorBrush(currentColor.Color);
-            currentColor.Name = null;
+            
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
+            currentColor.Name = GetColorList().Where(c => c.Color == currentColor.Color).Select(c => c.Name).FirstOrDefault();
             if (!stockList.Items.Contains(currentColor)) {
                 stockList.Items.Insert(0, currentColor);
             } else {
                 MessageBox.Show("既に登録済みです");
-            }   
-            
+            }
+            colorComboBox.SelectedIndex = -1;
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -77,8 +78,11 @@ namespace ColorChecker {
                 currentColor.Color = Color.FromRgb(0, 0, 0);
                 colorArea.Background = new SolidColorBrush(currentColor.Color);
                 setSliderValue(currentColor.Color);
+            } else {
+                MessageBox.Show("削除する色を選択してください");
             }
             
+
         }
     }
 }
