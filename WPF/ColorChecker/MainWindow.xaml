@@ -36,7 +36,7 @@
             <Slider x:Name="gSlider" Maximum="255" Grid.Column="1"   Grid.Row="1" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
             <TextBox x:Name="gValue" Grid.Column="2"   Grid.Row="1"   VerticalAlignment="Center" FontSize="20" 
                      Text="{Binding ElementName=gSlider,Path=Value, UpdateSourceTrigger=PropertyChanged, StringFormat=0}"/>
-            
+
 
             <TextBlock Grid.Row="2"  Text="B" HorizontalAlignment="Center" FontSize="40"/>
             <Slider x:Name="bSlider" Maximum="255" Grid.Column="1"   Grid.Row="2" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
@@ -58,15 +58,16 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            
+
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height ="*"/>
                 <RowDefinition Height ="5*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="stockButton" Content="STOCK" Margin="10" FontSize="16" Background="LightCyan" Click="stockButton_Click" />
+            <Button x:Name="stockButton" Content="STOCK" Margin="10,10,69,10" FontSize="16" Background="LightCyan" Click="stockButton_Click" />
             <ListBox x:Name="stockList" Grid.Row="1" Margin="10,0,10,10" Background="LightCyan" SelectionChanged="stockList_SelectionChanged"/>
+            <Button x:Name="deleteButton" Content="削除"  Margin="178,10,10,10" Click="deleteButton_Click"  />
 
         </Grid>
 

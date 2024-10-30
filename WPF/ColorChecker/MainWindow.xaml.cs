@@ -49,8 +49,11 @@ namespace ColorChecker {
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            if(stockList.SelectedIndex != -1) {
+                colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+                setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            }
+                
         }
         //各スライダーの値を設定
         private void setSliderValue(Color color) {
@@ -60,9 +63,22 @@ namespace ColorChecker {
         }
 
         private void colorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var tempcurrentColor = currentColor = (MyColor)((ComboBox)sender).SelectedItem;
-            setSliderValue(currentColor.Color);
-            currentColor.Name = tempcurrentColor.Name;
+            if(colorComboBox.SelectedIndex != -1) {
+                var tempcurrentColor = currentColor = (MyColor)((ComboBox)sender).SelectedItem;
+                setSliderValue(currentColor.Color);
+                currentColor.Name = tempcurrentColor.Name;
+            }      
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e) {
+            if (stockList.SelectedItem != null) {
+                int index = stockList.SelectedIndex;
+                stockList.Items.RemoveAt(index);
+                currentColor.Color = Color.FromRgb(0, 0, 0);
+                colorArea.Background = new SolidColorBrush(currentColor.Color);
+                setSliderValue(currentColor.Color);
+            }
+            
         }
     }
 }
