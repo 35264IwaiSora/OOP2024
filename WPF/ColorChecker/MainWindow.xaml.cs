@@ -20,11 +20,12 @@ namespace ColorChecker {
     /// </summary>
     public partial class MainWindow : Window {
         MyColor currentColor = new MyColor();
+        MyColor[] colorsTable;
         public MainWindow() {
             InitializeComponent();
             //αチャンネルの初期値を設定
             currentColor.Color = Color.FromArgb(255, 0, 0, 0);
-            colorComboBox.DataContext = GetColorList();
+            colorComboBox.DataContext = colorsTable = GetColorList();
         }
 
         private MyColor[] GetColorList() {
@@ -35,12 +36,21 @@ namespace ColorChecker {
         //スライドを動かすと呼ばれる
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
-            colorArea.Background = new SolidColorBrush(currentColor.Color);
             
+            int i;
+            for(i = 0; i<colorsTable.Length; i++) {
+                if (colorsTable[i].Color.Equals(currentColor.Color)) {
+                    currentColor.Name = colorsTable[i].Name;
+                    break;
+                }
+            }
+            colorComboBox.SelectedIndex = i;
+
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            currentColor.Name = GetColorList().Where(c => c.Color == currentColor.Color).Select(c => c.Name).FirstOrDefault();
+            currentColor.Name = colorsTable.Where(c => c.Color == currentColor.Color).Select(c => c.Name).FirstOrDefault();
             if (!stockList.Items.Contains(currentColor)) {
                 stockList.Items.Insert(0, currentColor);
             } else {
