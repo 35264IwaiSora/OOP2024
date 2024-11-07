@@ -19,7 +19,7 @@ namespace SampleWeightUnitConverter{
         /// <param name="value"></param>
         /// <returns></returns>
         public double FromPoundUnit(PoundUnit unit, double value) {
-            return (value * unit.Coefficient) * 28.34 / this.Coefficient;
+            return (value * unit.Coefficient)*28.34 / this.Coefficient;
         }
     }
 }
