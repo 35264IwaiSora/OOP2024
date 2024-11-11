@@ -7,9 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="300">
     <Window.Resources>
-        <SolidColorBrush x:Key="ButtonBrashuKey" Color="Aqua"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="Violet"/>
+        </Style>
+        <Style x:Key="WhiteBackgroundStyle" TargetType="Button">
+            <Setter Property="Background" Value="Violet"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel >
         
         <StackPanel.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -23,15 +30,16 @@
             <RadioButton Content="青" x:Name="bButton" Checked="Button_Checked"/>
             <RadioButton Content="緑" x:Name="gButton" Checked="Button_Checked"/>
         </StackPanel>
-        <Button Margin="10" Content="ボタン1" Background="{DynamicResource ButtonBrashuKey}"/>
-        <Button Margin="10" Content="ボタン2" Background="{DynamicResource ButtonBrashuKey}"/>
+        <Button Margin="10" Content="ボタン1" Style="{StaticResource WhiteBackgroundStyle}"/>
+        <Button Margin="10" Content="ボタン2">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource WhiteBackgroundStyle}">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Margin="10" Content="ボタン3">
-            <Button.Resources>
-                <SolidColorBrush x:Key="WhiteBrashuKey" Color="BlueViolet"/>
-            </Button.Resources>
-            <Button.Background>
-                <StaticResource ResourceKey="WhiteBrashuKey"/>
-            </Button.Background>
+            
         </Button>
     </StackPanel>
 </Window>
