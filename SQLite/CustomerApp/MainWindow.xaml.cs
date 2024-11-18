@@ -41,18 +41,18 @@ namespace CustomerApp {
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
-        //    var index = CustomerListView.SelectedIndex;
-        //    var customer = new Customer() {
-        //        Name = NameTextBox.Text,
-        //        Phone = PhoneTextBox.Text,
-        //        Address = AddressTextBox.Text,
-        //    };
-        //    using (var connection = new SQLiteConnection(App.databasePass)) {
-        //        connection.CreateTable<Customer>();
-        //        index = connection.Update(customer);
-        //    }
+            var item = CustomerListView.SelectedItem as Customer;
+            if(item != null) {
+                item.Name = NameTextBox.Text;
+                item.Phone = PhoneTextBox.Text;
+                item.Address = AddressTextBox.Text;
+                using (var connection = new SQLiteConnection(App.databasePass)) {
+                    connection.CreateTable<Customer>();
+                    connection.Update(item);
+                }
+            }
            
-        //    ReadDataBase();
+            ReadDataBase();
         }
         //ListView表示
         private void ReadDataBase() {
