@@ -27,7 +27,7 @@ namespace CustomerApp {
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            var cutomer = new Customer() {
+            var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
@@ -35,13 +35,24 @@ namespace CustomerApp {
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                connection.Insert(cutomer);
+                connection.Insert(customer);
             }
             ReadDataBase(); //ListView表示
         }
 
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {
-            //ReadDataBase();
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) {
+        //    var index = CustomerListView.SelectedIndex;
+        //    var customer = new Customer() {
+        //        Name = NameTextBox.Text,
+        //        Phone = PhoneTextBox.Text,
+        //        Address = AddressTextBox.Text,
+        //    };
+        //    using (var connection = new SQLiteConnection(App.databasePass)) {
+        //        connection.CreateTable<Customer>();
+        //        index = connection.Update(customer);
+        //    }
+           
+        //    ReadDataBase();
         }
         //ListView表示
         private void ReadDataBase() {
@@ -71,5 +82,16 @@ namespace CustomerApp {
                 ReadDataBase(); //ListView表示
             }
         }
+
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var item = CustomerListView.SelectedItem as Customer;
+            if(item != null) {
+                NameTextBox.Text = item.Name;
+                PhoneTextBox.Text = item.Phone;
+                AddressTextBox.Text = item.Address;
+            }
+            
+        }
+        
     }
 }
