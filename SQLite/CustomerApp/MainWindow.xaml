@@ -17,6 +17,7 @@
                     <RowDefinition Height ="*"/>
                     <RowDefinition Height ="*"/>
                     <RowDefinition Height ="*"/>
+                    <RowDefinition Height ="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="名前" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Margin="1"/>
@@ -27,11 +28,31 @@
                 <TextBlock Text="住所" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="AddressTextBox" Grid.Row="2" Grid.Column="1" Margin="1"/>
             </Grid>
+            <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="70"/>
+                </Grid.RowDefinitions>
+                    <TextBlock Text="画像" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                    
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <Button Content="追加" x:Name="AddPicButton" Grid.Row="0" Grid.Column="1" Margin="1" Click="AddPicButton_Click"/>
+                    <Button Content="クリア" x:Name="DeletePicPButton" Grid.Row="0" Grid.Column="1" Margin="1" Click="DeletePicPButton_Click"/>
+                </StackPanel>
+                <Image x:Name="CustomerImage" Grid.Row="0" Grid.Column="2" Margin="1" />
+            </Grid>
+                 
+                
+            
             <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2"/>
             <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2"/>
             <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2"/>
             <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged"/>
-            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="300" SelectionChanged="CustomerListView_SelectionChanged">
+            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="230" SelectionChanged="CustomerListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -39,6 +60,7 @@
                             <TextBlock Text="{Binding Name}" FontSize="20"/>
                             <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
                             <TextBlock Text="{Binding Address}" Foreground="Blue"/>
+                            <Image Source="{Binding IamgePass}"/>
                         </StackPanel>    
                     </DataTemplate>
                 </ListView.ItemTemplate>

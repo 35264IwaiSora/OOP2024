@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace CustomerApp.Objects {
     public class Customer {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         /// <summary>
         /// 名前
@@ -22,6 +23,10 @@ namespace CustomerApp.Objects {
         /// 住所
         /// </summary>
         public string Address { get; set; }
+        /// <summary>
+        /// 画像
+        /// </summary>
+        public string IamgePass  { get; set; }
 
         public override string ToString() {
             return $"{Id}   {Name}   {Phone}   {Address}" ;

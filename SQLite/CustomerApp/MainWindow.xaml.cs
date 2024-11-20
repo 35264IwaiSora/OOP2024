@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Objects;
+using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace CustomerApp {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
+                IamgePass = CustomerImage.Source !=  null ? (CustomerImage.Source as BitmapImage)?.UriSource.AbsolutePath : null,
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -42,7 +44,7 @@ namespace CustomerApp {
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
             var item = CustomerListView.SelectedItem as Customer;
-            if(item != null) {
+            if (item != null) {
                 item.Name = NameTextBox.Text;
                 item.Phone = PhoneTextBox.Text;
                 item.Address = AddressTextBox.Text;
@@ -51,7 +53,7 @@ namespace CustomerApp {
                     connection.Update(item);
                 }
             }
-           
+
             ReadDataBase();
         }
         //ListView表示
@@ -89,9 +91,27 @@ namespace CustomerApp {
                 NameTextBox.Text = item.Name;
                 PhoneTextBox.Text = item.Phone;
                 AddressTextBox.Text = item.Address;
+                if (!string.IsNullOrEmpty(item.IamgePass)) {
+                    CustomerImage.Source = new BitmapImage(new Uri(item.IamgePass));
+                }
             }
             
         }
-        
+
+        private void AddPicButton_Click(object sender, RoutedEventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "画像ファイル(*.jpg;*.jpeg:*.png;)|*.jpg;*jpeg;*.png";
+
+            if(openFileDialog.ShowDialog() == true) {
+                string filepath = openFileDialog.FileName;
+                CustomerImage.Source = new BitmapImage(new Uri(filepath));
+
+            }
+                
+        }
+
+        private void DeletePicPButton_Click(object sender, RoutedEventArgs e) {
+            CustomerImage.Source = null;
+        }
     }
 }
