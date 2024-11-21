@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,17 +28,22 @@ namespace CustomerApp {
             ReadDataBase();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e) { 
+        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
                 IamgePass = CustomerImage.Source !=  null ? (CustomerImage.Source as BitmapImage)?.UriSource.AbsolutePath : null,
             };
+            if (customer.Name != "") {
+                using (var connection = new SQLiteConnection(App.databasePass)) {
+                    connection.CreateTable<Customer>();
+                    connection.Insert(customer);
+                }
 
-            using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
-                connection.Insert(customer);
+            } else {
+                MessageBox.Show("名前を入力してください");
             }
             ReadDataBase(); //ListView表示
         }
@@ -49,9 +55,13 @@ namespace CustomerApp {
                 item.Phone = PhoneTextBox.Text;
                 item.Address = AddressTextBox.Text;
                 item.IamgePass = CustomerImage.Source != null ? (CustomerImage.Source as BitmapImage)?.UriSource.AbsolutePath : null;
-                using (var connection = new SQLiteConnection(App.databasePass)) {
-                    connection.CreateTable<Customer>();
-                    connection.Update(item);
+                if (item.Name != "") {
+                    using (var connection = new SQLiteConnection(App.databasePass)) {
+                        connection.CreateTable<Customer>();
+                        connection.Update(item);
+                    }
+                } else {
+                    MessageBox.Show("名前を入力してください");
                 }
             }
 

@@ -48,7 +48,7 @@
                  
                 
             
-            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2"/>
+            <Button Content="Redist" x:Name="SaveButton" Click="SaveButton_Click" Margin="2"/>
             <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2"/>
             <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2"/>
             <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged"/>
