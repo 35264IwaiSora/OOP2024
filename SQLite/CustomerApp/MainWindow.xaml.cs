@@ -27,7 +27,7 @@ namespace CustomerApp {
             ReadDataBase();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+        private void SaveButton_Click(object sender, RoutedEventArgs e) { 
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
@@ -48,6 +48,7 @@ namespace CustomerApp {
                 item.Name = NameTextBox.Text;
                 item.Phone = PhoneTextBox.Text;
                 item.Address = AddressTextBox.Text;
+                item.IamgePass = CustomerImage.Source != null ? (CustomerImage.Source as BitmapImage)?.UriSource.AbsolutePath : null;
                 using (var connection = new SQLiteConnection(App.databasePass)) {
                     connection.CreateTable<Customer>();
                     connection.Update(item);
@@ -110,7 +111,7 @@ namespace CustomerApp {
                 
         }
 
-        private void DeletePicPButton_Click(object sender, RoutedEventArgs e) {
+        private void DeletePicButton_Click(object sender, RoutedEventArgs e) {
             CustomerImage.Source = null;
         }
     }

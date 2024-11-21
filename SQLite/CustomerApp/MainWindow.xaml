@@ -41,7 +41,7 @@
                     
                 <StackPanel Grid.Row="0" Grid.Column="1">
                     <Button Content="追加" x:Name="AddPicButton" Grid.Row="0" Grid.Column="1" Margin="1" Click="AddPicButton_Click"/>
-                    <Button Content="クリア" x:Name="DeletePicPButton" Grid.Row="0" Grid.Column="1" Margin="1" Click="DeletePicPButton_Click"/>
+                    <Button Content="クリア" x:Name="DeletePicButton" Grid.Row="0" Grid.Column="1" Margin="1" Click="DeletePicButton_Click"/>
                 </StackPanel>
                 <Image x:Name="CustomerImage" Grid.Row="0" Grid.Column="2" Margin="1" />
             </Grid>
@@ -55,13 +55,19 @@
             <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="230" SelectionChanged="CustomerListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Id}"/>
-                            <TextBlock Text="{Binding Name}" FontSize="20"/>
-                            <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Address}" Foreground="Blue"/>
-                            <Image Source="{Binding IamgePass}"/>
-                        </StackPanel>    
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Width="150">
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text="{Binding Name}" FontSize="20"/>
+                                <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
+                                <TextBlock Text="{Binding Address}" Foreground="Blue"/>
+                                
+                            </StackPanel>
+                            <StackPanel>
+                                <Image Source="{Binding IamgePass}" Width="70" Height="70"/>
+                            </StackPanel>
+
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
